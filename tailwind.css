@@ -1,0 +1,42 @@
+export const shopDetails = {
+  name: 'ShirtHub - Premium Shirt Store',
+  description: 'Your one-stop destination for premium quality shirts. We offer a wide range of casual, formal, and traditional shirts for all occasions.',
+
+  contact: {
+    phone: '+1 (555) 123-4567',
+    email: 'support@shirthub.com',
+    whatsapp: '+1 (555) 123-4567',
+  },
+
+  address: {
+    street: '123 Fashion Street',
+    city: 'New York',
+    state: 'NY',
+    zip: '10001',
+    country: 'USA',
+  },
+
+  businessHours: {
+    weekdays: '9:00 AM - 8:00 PM',
+    weekends: '10:00 AM - 6:00 PM',
+  },
+
+  shipping: {
+    deliveryCharge: 50,
+    freeDeliveryAbove: 2000,
+    vatPercentage: 10,
+    estimatedDelivery: '3-5 business days',
+  },
+
+  social: {
+    facebook: 'https://facebook.com/shirthub',
+    instagram: 'https://instagram.com/shirthub',
+    twitter: 'https://twitter.com/shirthub',
+  },
+
+  policies: {
+    returns: '7-day easy return policy',
+    exchange: 'Free size exchange available',
+    warranty: '6-month quality guarantee',
+  },
+};

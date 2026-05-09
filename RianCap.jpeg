@@ -1,0 +1,174 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/card';
+import { Button } from '../components/ui/button';
+import { ArrowLeft, FileCode, Image, Package } from 'lucide-react';
+import { Separator } from '../components/ui/separator';
+import { Alert, AlertDescription } from '../components/ui/alert';
+
+export function Admin() {
+  const navigate = useNavigate();
+  const [showInstructions, setShowInstructions] = useState(true);
+
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <Button
+        variant="ghost"
+        className="mb-6 gap-2"
+        onClick={() => navigate('/')}
+      >
+        <ArrowLeft className="h-4 w-4" />
+        Back to Home
+      </Button>
+
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-3xl font-bold mb-2">Product Management</h1>
+        <p className="text-gray-600 mb-8">
+          Manage your shirt inventory and add new products
+        </p>
+
+        <Alert className="mb-6">
+          <Package className="h-4 w-4" />
+          <AlertDescription>
+            To receive orders via email/WhatsApp, you'll need to integrate with a backend service.
+            For now, orders are logged to the browser console and saved in localStorage.
+          </AlertDescription>
+        </Alert>
+
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle>📋 How to Add/Edit Products</CardTitle>
+            <CardDescription>Follow these steps to manage your shirt inventory</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div>
+              <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
+                <Image className="h-5 w-5" />
+                Step 1: Add Product Images
+              </h3>
+              <ol className="list-decimal list-inside space-y-2 text-sm text-gray-700 ml-2">
+                <li>Place your shirt images in the folder: <code className="bg-gray-100 px-2 py-1 rounded">/workspaces/default/code/src/imports/</code></li>
+                <li>Supported formats: .jpg, .jpeg, .png, .webp</li>
+                <li>Recommended size: 800x1200px (portrait orientation)</li>
+                <li>Name your files descriptively (e.g., <code className="bg-gray-100 px-2 py-1 rounded">blue-polo-shirt.jpg</code>)</li>
+              </ol>
+            </div>
+
+            <Separator />
+
+            <div>
+              <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
+                <FileCode className="h-5 w-5" />
+                Step 2: Edit Product Data File
+              </h3>
+              <ol className="list-decimal list-inside space-y-2 text-sm text-gray-700 ml-2">
+                <li>Open the file: <code className="bg-gray-100 px-2 py-1 rounded">/workspaces/default/code/src/app/data/shirts.ts</code></li>
+                <li>Find the first 4 products (your custom shirts) at the top</li>
+                <li>Edit these fields for each product:</li>
+              </ol>
+              <div className="mt-3 bg-gray-50 p-4 rounded-lg text-xs font-mono">
+                <pre>{`{
+  id: '1',                    // Unique ID
+  name: 'Your Shirt Name',    // Product name
+  price: 899,                 // Current price in ₹
+  originalPrice: 1299,        // Original price (for sales)
+  description: '...',         // Product description
+  image: '/src/imports/YourImage.jpeg',  // Main image path
+  images: ['/src/imports/YourImage.jpeg'], // All images
+  sizes: ['S', 'M', 'L', 'XL', 'XXL'],   // Available sizes
+  colors: ['Black', 'White', 'Navy'],     // Available colors
+  inStock: true,              // true or false
+  rating: 4.8,                // Rating (1.0 - 5.0)
+  reviews: 45,                // Number of reviews
+  views: 523,                 // View count
+  isNew: false,               // Show "New" badge
+  isOnSale: true,             // Show sale badge
+  isTrending: true,           // Show in trending section
+  isTopRated: true,           // Show in top rated section
+  dateAdded: '2026-04-15',    // Date added (YYYY-MM-DD)
+}`}</pre>
+              </div>
+            </div>
+
+            <Separator />
+
+            <div>
+              <h3 className="font-semibold text-lg mb-3">Step 3: Save and Refresh</h3>
+              <ol className="list-decimal list-inside space-y-2 text-sm text-gray-700 ml-2">
+                <li>Save the <code className="bg-gray-100 px-2 py-1 rounded">shirts.ts</code> file</li>
+                <li>The website will automatically reload with your changes</li>
+                <li>Check the homepage to see your new products</li>
+              </ol>
+            </div>
+
+            <Separator />
+
+            <div>
+              <h3 className="font-semibold text-lg mb-3">📱 How to Receive Orders</h3>
+              <div className="space-y-3 text-sm text-gray-700">
+                <p className="font-semibold">Current Setup (Development):</p>
+                <ul className="list-disc list-inside ml-2 space-y-1">
+                  <li>Orders are logged to the browser console (press F12 to view)</li>
+                  <li>Order details are saved in browser localStorage</li>
+                  <li>You can view the latest order in console after checkout</li>
+                </ul>
+
+                <p className="font-semibold mt-4">For Production (Email/SMS/WhatsApp):</p>
+                <ul className="list-disc list-inside ml-2 space-y-1">
+                  <li>You'll need to set up a backend service (e.g., Supabase, Firebase)</li>
+                  <li>Use email services like SendGrid, Mailgun, or AWS SES</li>
+                  <li>Use Twilio or WhatsApp Business API for SMS/WhatsApp notifications</li>
+                  <li>Store orders in a database for order management</li>
+                </ul>
+
+                <Alert className="mt-4">
+                  <AlertDescription>
+                    <strong>Quick Tip:</strong> For testing, open browser console (F12) after a customer places an order.
+                    You'll see the complete order details including customer info, items, and pricing.
+                  </AlertDescription>
+                </Alert>
+              </div>
+            </div>
+
+            <Separator />
+
+            <div>
+              <h3 className="font-semibold text-lg mb-3">🎨 Customize Shop Details</h3>
+              <ol className="list-decimal list-inside space-y-2 text-sm text-gray-700 ml-2">
+                <li>Open: <code className="bg-gray-100 px-2 py-1 rounded">/workspaces/default/code/src/app/data/shopDetails.ts</code></li>
+                <li>Update your shop name, contact info, address, and policies</li>
+                <li>Changes will appear in the footer and checkout page</li>
+              </ol>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>📊 Current Statistics</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="text-center p-4 bg-blue-50 rounded-lg">
+                <p className="text-3xl font-bold text-blue-600">120</p>
+                <p className="text-sm text-gray-600">Total Products</p>
+              </div>
+              <div className="text-center p-4 bg-green-50 rounded-lg">
+                <p className="text-3xl font-bold text-green-600">4</p>
+                <p className="text-sm text-gray-600">Your Custom Shirts</p>
+              </div>
+              <div className="text-center p-4 bg-yellow-50 rounded-lg">
+                <p className="text-3xl font-bold text-yellow-600">116</p>
+                <p className="text-sm text-gray-600">Example Products</p>
+              </div>
+              <div className="text-center p-4 bg-purple-50 rounded-lg">
+                <p className="text-3xl font-bold text-purple-600">5</p>
+                <p className="text-sm text-gray-600">Per Row (Desktop)</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+}
